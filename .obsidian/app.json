@@ -1,0 +1,6 @@
+{
+  "attachmentFolderPath": "./screenshots",
+  "newLinkFormat": "relative",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": true
+}
