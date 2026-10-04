@@ -86,31 +86,28 @@ Because Markdown links are more portable and work better outside Obsidian, for e
 **Your `git log --oneline` output, run in VS Code's built-in terminal:**
 
 ```
-(paste output here)
+931ad5b (HEAD -> main) Exercise 1 and 2 setup
 ```
-
-> [!example] Evidence — screenshot
-> *(VS Code showing the Python extension's page, with its publisher and identifier, and the terminal below it — `ex3-vscode.png`)*
-
+![](Screenshots/ex3-vscode.png)
 **Q1. `git log --oneline` worked without a `cd`.
 Why, and what would have happened if you had opened a folder that is not a repository?**
 
 ```
-(your answer here)
+It worked because VS Code was opened in my git-practice repository. If I opened a folder that was not a Git repository, Git would show an error saying it is not a repository
 ```
 
 **Q2. The extension's name already said *Python*.
 Why did you also check its identifier before installing it?**
 
 ```
-(your answer here)
+I checked the identifier to make sure it was the official Python extension from Microsoft and not another extension with a similar name
 ```
 
 **Q3. You trusted your repository's folder when VS Code asked.
 What would you be allowing if you trusted a folder you downloaded from somewhere else?**
 
 ```
-(your answer here)
+I would be allowing code, tasks, extensions, or scripts from that folder to run with more permissions in VS Code, so I should only trust folders from sources I know
 ```
 
 ---
@@ -120,20 +117,26 @@ What would you be allowing if you trusted a folder you downloaded from somewhere
 **Check 1 — `dpkg-query -W git code flameshot obsidian`:**
 
 ```
-(paste output here)
+code    1.140.0-1790759618
+flameshot       14.0.0-4
+git     1:2.53.0-1
+obsidian        1.7.7-0kali1
+
 ```
 
 **Check 2 — `git config --global --list`:**
 
 ```
-(paste output here)
+user.name=Zeyad Ibrahim
+user.email=zeyad.6ahmed@gmail.com
+pull.rebase=true
 ```
 
 **Check 3 — `ssh -T git@github.com`:**
 
 ```
-(paste output here)
-```
+Hi zeyad-ibrahim! You've successfully authenticated, but GitHub does not provide shell access.
+![](Screenshots/ex4-environment.png)```
 
 > [!example] Evidence — screenshot
 > *(all three checks in one terminal, captured with Print Screen — `ex4-environment.png`)*
@@ -142,21 +145,21 @@ What would you be allowing if you trusted a folder you downloaded from somewhere
 What do you know, and what have you ruled out?**
 
 ```
-(your answer here)
+Checks 1 and 2 show that the required tools are installed and Git is configured correctly. If check 3 failed with Permission denied (publickey), the problem would most likely be with the SSH key or GitHub authentication
 ```
 
 **Q2. Check 3 did not ask about GitHub's fingerprint this time.
 Why not, and what should you conclude if it ever asks again on this machine?**
 
 ```
-(your answer here)
+It did not ask because GitHub’s host key was already saved on my machine from the first connection. If it asks again on the same machine, I should check the fingerprint before accepting because the host key may have changed or something may be wrong.
 ```
 
 ---
 
 ## Exercise 5: Push the Worksheet and Confirm It Arrived — REQUIRED
 
-**Your `git push` output:**
+**Your ![](Screenshots/ex4-environment.png)`git push` output:**
 
 ```
 (paste output here)
