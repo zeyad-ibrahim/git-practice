@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Module0-Foundation/Session1/Module0_Session1_Practical_Guide_Submission.md",
+                "file": "Module0_Session2_Practical_Guide_Submission.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Module0_Session1_Practical_Guide_Submission"
+              "title": "Module0_Session2_Practical_Guide_Submission"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Module0-Foundation/Session1/Module0_Session1_Practical_Guide_Submission.md",
+                "file": "Module0_Session2_Practical_Guide_Submission.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Module0_Session1_Practical_Guide_Submission"
+              "title": "Backlinks for Module0_Session2_Practical_Guide_Submission"
             }
           },
           {
@@ -112,12 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Module0-Foundation/Session1/Module0_Session1_Practical_Guide_Submission.md",
+                "file": "Module0_Session2_Practical_Guide_Submission.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Module0_Session1_Practical_Guide_Submission"
+              "title": "Outgoing links from Module0_Session2_Practical_Guide_Submission"
             }
           },
           {
@@ -139,10 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Module0-Foundation/Session1/Module0_Session1_Practical_Guide_Submission.md"
+                "file": "Module0_Session2_Practical_Guide_Submission.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Module0_Session1_Practical_Guide_Submission"
+              "title": "Outline of Module0_Session2_Practical_Guide_Submission"
             }
           }
         ]
@@ -162,15 +162,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3e8943d65f96cf7a",
+  "active": "daf9658f63f96aa7",
   "lastOpenFiles": [
+    "Screenshots/ex1-session-folder.png",
+    "Module0-Foundation/Session1/Module0_Session1_Practical_Guide_Submission.md",
     "Screenshots/Screenshot (4).png",
     "Module0-Foundation/Session1/screenshots/session1-proof.png",
     "Screenshots/screenshots/session1-proof.png",
     "Screenshots/screenshots",
     "Module0_Session2_Practical_Guide_Submission.md",
     "Module0-Foundation/Session1/screenshots",
-    "Module0-Foundation/Session1/Module0_Session1_Practical_Guide_Submission.md",
     "Module0-Foundation/Session1/Module0_Session1_Home_Task_Submission.md",
     "Module0-Foundation/Session1",
     "Module0-Foundation",

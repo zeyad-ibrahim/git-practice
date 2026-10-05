@@ -4,7 +4,7 @@
 
 ### Professional Training in Cybersecurity I
 
-**Student Name:**
+**Student Name:![](Screenshots/Screenshot%20(4).png)**
 
 **Date:**
 
@@ -211,7 +211,7 @@ Module0_Session1_Practical_Guide_Submission.md
 
 Module0-Foundation/Session1/screenshots:
 ```
-
+![](Screenshots/Screenshot%20(4).png)
 > [!example] Evidence — screenshot
 > *(the `Module0-Foundation/Session1` folder on GitHub, showing both worksheets and the `screenshots` folder — `ex6-session1-github.png`)*
 
