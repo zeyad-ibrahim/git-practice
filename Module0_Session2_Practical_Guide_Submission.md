@@ -159,10 +159,12 @@ It did not ask because GitHub’s host key was already saved on my machine from 
 
 ## Exercise 5: Push the Worksheet and Confirm It Arrived — REQUIRED
 
-**Your ![](Screenshots/ex4-environment.png)`git push` output:**
+**Your !![](Screenshots/ex5-push.png)`git push` output:**
 
 ```
-(paste output here)
+To github.com:zeyad-ibrahim/git-practice.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
 ```
 
 **Your `git status` output, after the push:**
