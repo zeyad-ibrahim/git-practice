@@ -58,18 +58,28 @@ Without the !, Markdown would show a clickable link to the image instead of disp
 
 **The four mistakes: for each line, what is wrong, and what Obsidian shows because of it.**
 
-**2a — Line 1 (`### Lab Checks`):** _Answer:_
+2a — Line 1 (`### Lab Checks`): Answer:
+The heading is missing a space after the three # characters, so Obsidian does not render it as a level-3 heading.
 
-**2b — Lines 3–4 (the two table lines):** _Answer:_
+2b — Lines 3–4 (the two table lines): Answer:
+The table is missing the delimiter row, so Obsidian does not render it as a proper table.
 
-**2c — Line 6 (` ```bash `):** _Answer:_
+2c — Line 6 (` ```bash `): Answer:
+The code block is not closed after the ping command, so the following image and content are treated as part of the code block.
 
-**2d — Line 9 (the image line):** _Answer:_
+2d — Line 9 (the image line): Answer:
+The image filename contains spaces and does not match the required task1-lab-card.png filename, so the image does not load.
 
 **Your corrected section, written directly below this line in place of the placeholder:**
 
-*(write the corrected section here, starting with `### Lab Checks`)*
+### Lab Checks
 
+| Check | Result |
+|---|---|
+| Kali reaches Ubuntu | passed |
+
+```bash
+ping -c 1 10.0.2.5
 > [!example] Evidence — screenshot
 > *(the corrected section in the reading view, its picture showing — `task2-fixed.png`)*
 
@@ -87,19 +97,19 @@ What did it do to the rest of the section, and why does that make it the most ex
 **Your `git push` output:**
 
 ```
-(paste output here)
+Everything up-to-date
 ```
 
 **Your `git status` output, after the push:**
 
 ```
-(paste output here)
+Your branch is up to date with 'origin/main'.
 ```
 
 **Your `git log --oneline -3` output:**
 
 ```
-(paste output here)
+ebf3833 (HEAD -> main, origin/main) Module 0 Session 2: home task 2
 ```
 
 > [!example] Evidence — screenshot
@@ -109,15 +119,14 @@ What did it do to the rest of the section, and why does that make it the most ex
 What does each of the two names tell you, and what would it mean if `origin/main` were one line lower?**
 
 ```
-(your answer here)
+HEAD -> main means my local main branch points to the newest commit. origin/main means the remote-tracking branch on GitHub points to the same commit. If origin/main were one line lower, my local main branch would be ahead of GitHub and the newest commit would not have been pushed yet.
 ```
 
 **Q2. You committed twice but pushed once.
 Until the push, who could see your two commits, and what would that have meant at 22:00 on Saturday?**
 
 ```
-(your answer here)
-```
+Until the push, only my local repository could see the two commits. GitHub would not have them yet, so if the deadline passed before the push, those commits would not count as submitted on GitHub.```
 
 ---
 
@@ -128,8 +137,7 @@ This is not a penalty.
 A failure you can describe is a two-minute fix, and describing it accurately is a graded skill in this course.
 
 ```
-(your answer here, or "nothing failed")
-```
+I initially saved some screenshots in the wrong folder and had to move them to the correct screenshots folder before pushing the Home Task.```
 
 ---
 
@@ -140,5 +148,4 @@ Using one for learning, explanation or debugging is allowed.
 Not disclosing it is an integrity violation.
 
 ```
-(None, or: which assistant, and what for)
-```
+I used ChatGPT to explain the Git and Markdown instructions, troubleshoot errors, and help me understand how to complete the Home Task.```
