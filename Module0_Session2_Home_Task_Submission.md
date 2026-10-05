@@ -4,7 +4,7 @@
 
 ### Professional Training in Cybersecurity I
 
-**Student Name:**
+**Student Name:** Zeyad Ahmed Ramadan
 
 **Date:**
 
@@ -27,7 +27,13 @@
 
 **Your lab card, written directly below this line in place of the placeholder:**
 
-*(write your lab card here, starting with `### My Lab`)*
+### My Lab
+
+- **OS:** Kali Linux
+- **Virtualization:** VMware Workstation
+- **Tools:** Git, Obsidian, VS Code
+- **Repository:** git-practice
+- **Purpose:** Practice using Git, Markdown, and basic cybersecurity tools![](Screenshots/screenshots/task1-lab-card.png)
 
 > [!example] Evidence — screenshot
 > *(your lab card in the reading view — `task1-lab-card.png`)*
@@ -36,14 +42,14 @@
 Where is that path read from, and why would the full path show a broken image to your instructor even though it works on your machine?**
 
 ```
-(your answer here)
+The path is read relative to the Markdown file. A full path such as /home/kali/... only exists on my machine, so it would not work on my instructor's machine
 ```
 
 **Q2. Your screenshot line starts with `!`.
 What would the same line show without the `!`?**
 
 ```
-(your answer here)
+Without the !, Markdown would show a clickable link to the image instead of displaying the image itself
 ```
 
 ---
@@ -52,7 +58,7 @@ What would the same line show without the `!`?**
 
 **The four mistakes: for each line, what is wrong, and what Obsidian shows because of it.**
 
-**2a — Line 1 (`###Lab Checks`):** _Answer:_
+**2a — Line 1 (`### Lab Checks`):** _Answer:_
 
 **2b — Lines 3–4 (the two table lines):** _Answer:_
 
