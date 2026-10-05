@@ -175,25 +175,28 @@ branch 'main' set up to track 'origin/main'.
 
 > [!example] Evidence — screenshot
 > *(this worksheet open on GitHub, showing at least one of its pictures — `ex5-github.png`)*
-
+![](Screenshots/ex5-github.png)
 **Q1. Before the push, `git status` printed both `Your branch is ahead of 'origin/main'` and `nothing to commit, working tree clean`.
 Which line decides whether your work counts at the deadline, and why?**
 
 ```
-(your answer here)
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
 ```
 
 **Q2. Why does the course judge the deadline by what is on GitHub rather than by the time on each commit?**
 
 ```
-(your answer here)
+Because GitHub is the version the course can actually see. A commit can be made before the deadline but if it is not pushed, it has not really been submitted
 ```
 
 **Q3. You can delete a file from your repository at any time.
 Why check your screenshots for a password, key or token before pushing, rather than after?**
 
 ```
-(your answer here)
+Because once a password, key, or token is pushed to GitHub, it can remain in the commit history even if I delete the file later. It is safer to check before pushing so secrets are never uploaded
 ```
 
 ---
@@ -202,8 +205,11 @@ Why check your screenshots for a password, key or token before pushing, rather t
 
 **Your `ls -R Module0-Foundation/Session1` output:**
 
-```
-(paste output here)
+```Module0-Foundation/Session1:
+Module0_Session1_Home_Task_Submission.md        screenshots
+Module0_Session1_Practical_Guide_Submission.md
+
+Module0-Foundation/Session1/screenshots:
 ```
 
 > [!example] Evidence — screenshot
@@ -212,13 +218,13 @@ Why check your screenshots for a password, key or token before pushing, rather t
 **Q1. Why was the shared folder read-only, and why did you remove it once the files were copied?**
 
 ```
-(your answer here)
+The shared folder was read-only so I could copy the original files without accidentally changing them. I removed it after copying because I no longer needed the shared source
 ```
 
 **Q2. Why did you copy the two worksheets and the `screenshots` folder by name, rather than the whole shared folder?**
 
 ```
-(your answer here)
+I copied only the two worksheets and the screenshots folder because those are the required submission files. Copying the whole shared folder could include extra files that are not needed
 ```
 
 ---
