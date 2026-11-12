@@ -1,257 +1,126 @@
 # Module 0 · Session 1 — Home Task Submission
-
 ## Proving the Lab Does What It Claims
+**Course:** Professional Training in Cybersecurity I  
+**Student name:** [CONFIRM FULL NAME]  
+**Date:** [ENTER DATE]
 
-### Professional Training in Cybersecurity I
+> **Evidence notice:** Conceptual answers are drafted. Perform each actual test in the lab; write down observed results and add genuine screenshots before submission. Restore all modified lab settings.
 
-**Student Name:**
+## Task 1 — Finish the build
+**What was unfinished?** `[ENTER WHAT WAS ACTUALLY UNFINISHED, OR NONE]`
 
-**Date:**
-
----
-
-> [!note] How to use this submission
-> This single file is your **graded artifact** for the home task.
-> Paste your commands, their output, your screenshots and your written answers into the slots below, in task order.
->
-> Keep screenshots in a `screenshots/` folder beside this file and embed each with `![task2-plain-nat](screenshots/task2-plain-nat.png)` on its own line below its evidence callout, after a blank line.
->
-> **Before you submit:** delete this note, then commit and push **this file together with its `screenshots/` folder**.
-
-> [!important] Tasks 2 and 4 must be put back
-> Both of them change a machine on purpose and both of them end by restoring it.
-> **Your last piece of evidence in each is the proof that you restored it.**
-> A task left half-done breaks the lab for the next session, and it is marked as incomplete.
-
----
-
-# Task 1: Finish the build
-
-**Was anything unfinished at the end of the session?**
-
-```
-(your answer here)
-```
-
-**The three checks, from Kali:**
-
+**Three checks, from Kali:**
 ```bash
-(paste ip a, ping, and ssh lab here)
+ip a
+# [PASTE REAL OUTPUT]
+ping -c 1 [ACTUAL_UBUNTU_IP]
+# [PASTE REAL OUTPUT]
+ssh lab
+# [PASTE REAL OUTPUT]
 ```
-
-**Check 1 from each of the three machines (`ip a` on Kali and Ubuntu, `ipconfig` on Windows):**
-
+**Check 1 on each system:**
+```text
+Kali, ip a: [REAL IP]
+Ubuntu, ip a: [REAL IP]
+Windows, ipconfig: [REAL IP]
 ```
-Kali:
-Ubuntu:
-Windows:
+**Evidence:** `[VERIFY: screenshots/task1-checks.png]`
+
+## Task 2 — Prove a NAT Network is not plain NAT
+**Prediction BEFORE changing anything:** With Kali switched from the shared `CyberLab` NAT Network to plain NAT, Kali should normally still obtain its own network address and retain outbound connectivity, but direct Kali-to-Ubuntu ping and `ssh lab` are expected to fail because plain NAT does not automatically place Kali on Ubuntu's reachable subnet. **Record your prediction before your test; actual outcomes can vary by configuration.**
+
+**Three checks under plain NAT:**
+```text
+[PASTE ACTUAL ADDRESS / PING / SSH RESULTS]
 ```
+**Evidence:** `[VERIFY: screenshots/task2-plain-nat.png]`
 
-> [!example] Evidence — screenshot
-> *(all three checks in one terminal — `task1-checks.png`)*
-
----
-
-# Task 2: Prove a NAT Network is not NAT
-
-**Your prediction, written before you changed anything:**
-
+**Three checks after returning Adapter 1 to NAT Network / CyberLab:**
+```text
+[PASTE ACTUAL ADDRESS / PING / SSH RESULTS]
 ```
-(what you expected each of the three checks to do under plain NAT)
-```
+**Evidence:** `[VERIFY: screenshots/task2-restored.png, INCLUDING ADAPTER SETTING]`
 
-**The three checks with Kali on plain NAT:**
+**Q1. Which checks changed, and which failed first?**  
+**Answer:** In the expected setup, obtaining an address still works, but ping to Ubuntu is the first failed connectivity test and SSH to `lab` fails as well. After returning to CyberLab, both should pass. [ADJUST TO YOUR OBSERVED RESULTS.]
 
-```
-(paste output here)
-```
+**Q2. Why can Kali reach the Internet but not Ubuntu under plain NAT?**  
+**Answer:** Plain NAT provides outbound translation toward external networks; it does not automatically establish the shared peer-to-peer virtual LAN used by the other lab VM. Internet access alone cannot prove Kali and Ubuntu can communicate directly.
 
-> [!example] Evidence — screenshot
-> *(the failing check, with the adapter setting visible if you can fit both — `task2-plain-nat.png`)*
+**Q3. Why is the first failing check useful?**  
+**Answer:** A failed ping isolates the problem earlier in the networking path than SSH: it shows reachability is already failing before we need to investigate credentials or the SSH server. The address check only proves interface configuration, while SSH adds application and authentication dependencies.
 
-**The three checks after you restored CyberLab:**
-
-```
-(paste output here)
-```
-
-> [!example] Evidence — screenshot
-> *(Adapter 1 back on NAT Network / CyberLab, and the checks passing — `task2-restored.png`)*
-
-**Q1. Which checks changed and which did not?
-Be exact about which one failed first.**
-
-```
-(your answer here)
-```
-
-**Q2. Kali still reached the internet under plain NAT.
-Explain why that is consistent with it being unable to reach Ubuntu.**
-
-```
-(your answer here)
-```
-
-**Q3. What does the first failing check tell you that the others do not?**
-
-```
-(your answer here)
-```
-
----
-
-# Task 3: Prove the client config is not only for `ssh`
-
-**`ssh lab uptime`:**
-
+## Task 3 — Prove SSH client config also works for SCP
 ```bash
-(paste command and output here)
+ssh lab uptime
+# [PASTE REAL OUTPUT]
+scp lab-notes.txt lab:
+# [PASTE REAL OUTPUT]
+scp lab:lab-notes.txt returned-notes.txt
+cat returned-notes.txt
+# [PASTE REAL OUTPUT]
 ```
+**Evidence:** `[VERIFY: screenshots/task3-scp.png]`
 
-**`scp lab-notes.txt lab:`:**
+**Q1. Where did the address, username and key come from?**  
+**Answer:** From the matching `Host lab` block in Kali's `~/.ssh/config`: `HostName` sets the address, `User` sets the account, and `IdentityFile` chooses the private key. `scp` uses SSH and reads the same configuration.
 
+**Q2. What should be edited if the server's DHCP address changes?**  
+**Answer:** Update the `HostName` value in the `Host lab` entry in one place—Kali's `~/.ssh/config`—then use `lab` again in SSH and SCP commands.
+
+**Q3. Why use `ssh lab uptime` rather than open a shell and type `uptime`?**  
+**Answer:** It executes one remote command non-interactively, returns its output and exit status to the local shell, and can be scripted without starting an interactive session.
+
+## Task 4 — Prove what a snapshot restores
+**Create a file, then show it:**
 ```bash
-(paste command and output here)
+# [ENTER THE ACTUAL COMMANDS AND OUTPUT FOR important-notes.txt AND ls ~]
 ```
-
-**`scp lab:lab-notes.txt returned-notes.txt` and `cat returned-notes.txt`:**
-
+**Stop the SSH listener and prove connection fails:**
 ```bash
-(paste command and output here)
+# [ENTER THE ACTUAL COMMANDS AND OUTPUT]
 ```
+**Evidence:** `[VERIFY: screenshots/task4-broken.png]`
 
-> [!example] Evidence — screenshot
-> *(all three commands in one terminal — `task3-scp.png`)*
-
-**Q1. Neither `scp` command named an address, an account or a key.
-Where did each of those come from?**
-
-```
-(your answer here)
-```
-
-**Q2. The server's address is handed out by DHCP and could change.
-What exactly would you edit, and how many places?**
-
-```
-(your answer here)
-```
-
-**Q3. Name one thing `ssh lab uptime` lets you do that opening a session and typing `uptime` does not.**
-
-```
-(your answer here)
-```
-
----
-
-# Task 4: Prove what a snapshot actually restores
-
-**Creating the file, and `ls ~` showing it:**
-
-```
-(paste output here)
-```
-
-**Stopping the listener, and the failing `ssh lab` from Kali:**
-
-```
-(paste output here)
-```
-
-> [!example] Evidence — screenshot
-> *(the failed connection — `task4-broken.png`)*
-
-**After restoring `clean install` — is SSH working, and is the file there?**
-
+**Restore Ubuntu's `clean install` snapshot, then prove the intended SSH state and file status:**
 ```bash
-(paste ssh lab and ls ~ here)
+# [PASTE ACTUAL ssh lab AND ls ~ OUTPUT]
 ```
+**Evidence:** `[VERIFY: screenshots/task4-restored.png]`
 
-> [!example] Evidence — screenshot
-> *(the restored machine with SSH working — `task4-restored.png`)*
+**Q1. What happened to important-notes.txt, and why?**  
+**Answer:** If the file was created after the `clean install` snapshot, restoring that earlier snapshot removes it from the restored VM state. [CONFIRM YOUR OBSERVATION.]
 
-**Q1. What happened to `important-notes.txt`, and why?**
+**Q2. Explain why restoring is not just undoing the last action.**  
+**Answer:** A snapshot restores the whole saved machine state, including filesystem and system settings, not just the most recent change. Multiple later changes may disappear together.
 
-```
-(your answer here)
-```
+**Q3. What does a snapshot NOT protect you from?**  
+**Answer:** It is not an independent backup. It does not protect against loss of the host's storage device or corruption/loss of the VM and snapshot files kept on that same device.
 
-**Q2. Explain "restoring is not undoing your last action" in your own words, using what you just observed.**
+## Task 5 — Short answers
+**Q1. Why create the network first?**  
+**Answer:** So the correct named NAT Network can be assigned to all guests from the start. Otherwise, you must revisit each guest's adapter configuration and re-test IP addresses and reachability.
 
-```
-(your answer here)
-```
+**Q2. Windows ping fails: one harmless and one real problem; how to tell?**  
+**Answer:** Harmless: Windows Firewall blocks ICMP echo while the lab network is working. Real: Windows is attached to the wrong virtual network or has an incorrect address. Check its `ipconfig`, compare its network with the other guests, and verify Kali–Ubuntu ping/SSH. If the network checks pass, use an allowed Windows-specific connectivity test or check firewall rules rather than treating ping as definitive.
 
-**Q3. Name one thing a snapshot does not protect you from.**
+**Q3. What crosses the wire during SSH key login? Why can't an observer replay it?**  
+**Answer:** The client sends proof based on a signature using its private key; the private key itself never crosses the network. SSH's exchange binds authentication to the current session, so captured traffic is not reusable as a fresh login credential.
 
-```
-(your answer here)
-```
+**Q4. Why does Ubuntu not need the private key?**  
+**Answer:** Ubuntu keeps the matching public key in `authorized_keys` and uses it to verify signatures. It cannot use the public key to derive the client's private key.
 
----
+**Q5. What prevents outsiders from initiating connections to VMs without a special rule?**  
+**Answer:** The NAT gateway normally has no unsolicited inbound mapping or port forwarding to the lab guests, so unsolicited inbound connections cannot directly reach them. It is not a substitute for host firewalls.
 
-# Task 5: Short answers
+**Q6. What prevents YOUR outbound traffic from contacting real targets?**  
+**Answer:** NAT does not provide that restriction; your ethical rules, authorization scope, and any deliberately configured egress filtering determine what you are allowed or able to contact.
 
-**Q1. Why is the network created before the machines rather than after?
-What specifically would you have to redo if you built the machines first?**
+## Confirmation — verify rather than assume
+- [ ] Kali Adapter 1 returned to NAT Network / CyberLab
+- [ ] Ubuntu restored to intended state and SSH verified
+- [ ] All three guests boot; all three checks tested
+- [ ] Original screenshots attached beside this file in `screenshots/`
 
-```
-(your answer here)
-```
-
-**Q2. A ping to your Windows machine fails.
-Give two different explanations, one where the lab is working correctly and one where it is not, and say which check would tell them apart.**
-
-```
-(your answer here)
-```
-
-**Q3. When you log in with a key, what crosses the wire?
-Explain why someone who captured it still could not log in as you afterward.**
-
-```
-(your answer here)
-```
-
-**Q4. Why does the server never need your private key?
-What does it hold instead, and what can it do with that?**
-
-```
-(your answer here)
-```
-
-**Q5. Nothing outside can start a conversation with your lab machines, and no rule was written to stop it.
-Explain where that protection actually comes from.**
-
-```
-(your answer here)
-```
-
-**Q6. That protection does not work in the other direction.
-Say what stops you from reaching something real, in one sentence.**
-
-```
-(your answer here)
-```
-
----
-
-# Confirmation
-
-- [ ] Kali's Adapter 1 is back on **NAT Network / CyberLab**
-- [ ] The Ubuntu machine has been **restored** and `ssh lab` works
-- [ ] All three machines boot and all three checks pass
-- [ ] Screenshots are in `screenshots/` beside this file
-
----
-
-# AI Assistance
-
-One line, **required either way**: `None`, or the AI assistant you used and what you used it for, for example *"to explain an error VirtualBox showed"*.
-Using one for learning, explanation or debugging is allowed.
-Not disclosing it is an integrity violation.
-
-```
-(None, or: which assistant, and what for)
-```
+## AI assistance disclosure
+ChatGPT was used to explain technical concepts and draft written answers. VM operations, results, and screenshots are not generated or verified by ChatGPT and must be supplied from the student's actual work.

@@ -1,264 +1,133 @@
 # Module 0 · Session 1 — Practical Guide Submission
-
 ## The Virtual Lab: VirtualBox, the Course Machines, and SSH
+**Course:** Professional Training in Cybersecurity I  
+**Student name:** [CONFIRM FULL NAME]  
+**Date:** [ENTER DATE]
 
-### Professional Training in Cybersecurity I
+> **Evidence notice:** Conceptual questions are drafted below. Commands, screenshots, IP addresses, installed software, and actions must be verified on your own VMs. Never submit the `[VERIFY]` fields as proof of an action you have not performed.
 
-**Student Name:**
+## Exercise 1 — Install VirtualBox (required)
+**Evidence:** `[VERIFY: add screenshots/ex1-manager.png of your host VirtualBox Manager]`
 
-**Date:**
+**Q1. Did you change firmware, and how did you confirm virtualization?**  
+**Answer:** [VERIFY ACTUAL HOST EXPERIENCE]. On Windows, Task Manager → Performance → CPU shows whether **Virtualization** is enabled; alternatively confirm AMD-V/Intel VT-x in UEFI/BIOS and verify VirtualBox can start a 64-bit guest. Whether firmware settings were changed depends on the host.
 
----
-
-> [!note] How to use this submission
-> This single file is your **graded artifact**.
-> Work through the Practical Guide and paste your terminal output, screenshots and written answers into the slots below, in guide order.
->
-> **Screenshots are evidence you did the work yourself.**
-> Pasted text can be copied from anywhere.
-> A screenshot of your own machine cannot.
->
-> - **Capture each window where it actually lives.**
->   The VirtualBox Manager, the NAT Networks tab and the Snapshots panels belong to your **host**, so capture those with the host's own tool (`PrtSc` on Windows or Ubuntu, `Shift`+`Command`+`4` on macOS).
->   Anything inside a machine is captured from that machine's own desktop.
->   A dedicated capture tool arrives in a later session, and nothing here needs it.
-> - Keep them in a `screenshots/` folder beside this file, named for the exercise, for example `ex3-kali-desktop.png`, and embed each one with `![ex3-kali-desktop](screenshots/ex3-kali-desktop.png)` on its own line below its evidence callout, after a blank line.
->
-> **Before you submit:** delete this note, then commit and push **this markdown file together with its `screenshots/` folder**.
-> The paths inside this file are relative to that folder, so a file handed in alone shows empty boxes where your evidence should be.
-
----
-
-# The Build
-
----
-
-## Exercise 1: Install VirtualBox — REQUIRED
-
-> [!example] Evidence — screenshot
-> *(the VirtualBox Manager window — `ex1-manager.png`)*
-
-**Q1. Did you have to change anything in your firmware, and how did you confirm virtualization was on?**
-
-```
-(your answer here)
-```
-
----
-
-## Exercise 2: Create the CyberLab network — REQUIRED
-
-**Your `VBoxManage list natnets` output, the CyberLab block:**
-
-```
-(paste output here)
-```
-
-> [!example] Evidence — screenshot
-> *(the NAT Networks tab showing CyberLab — `ex2-cyberlab.png`)*
-
-**Q1. Why does the network have to exist before the machines rather than after?**
-
-```
-(your answer here)
-```
-
-**Q2. What does a NAT Network give you that plain NAT does not?**
-
-```
-(your answer here)
-```
-
----
-
-## Exercise 3: Build Kali — REQUIRED
-
-**`ip a` on Kali, the line showing your address:**
-
-```
-(paste output here)
-```
-
-> [!example] Evidence — screenshot
-> *(the Kali desktop with a terminal open — `ex3-kali-desktop.png`)*
-
-**Q1. Kali is imported and the other two are installed.
-What is the difference, and why is this machine the one that is imported?**
-
-```
-(your answer here)
-```
-
-**Q2. The image ships with a published default password.
-What did you do about it, and why does it matter that the default is published?**
-
-```
-(your answer here)
-```
-
----
-
-## Exercise 4: Build Ubuntu Server — REQUIRED
-
-**`ip a` on Ubuntu, the line showing your address:**
-
-```
-(paste output here)
-```
-
-**The user name you created:**
-
-```
-(should be student)
-```
-
-> [!example] Evidence — screenshot
-> *(the Ubuntu login prompt or a logged-in console — `ex4-ubuntu-console.png`)*
-
-**Q1. What does the "Install OpenSSH server" checkbox do, and what would it have cost you to miss it?**
-
-```
-(your answer here)
-```
-
----
-
-## Exercise 5: Build Windows 11 — REQUIRED
-
-**`ipconfig` on Windows, the line showing your address:**
-
-```
-(paste output here)
-```
-
-> [!example] Evidence — screenshot
-> *(the Windows desktop — `ex5-windows-desktop.png`)*
-
-**Q1. You installed without a product key.
-What are the consequences, and why was that chosen over an evaluation edition?**
-
-```
-(your answer here)
-```
-
-**Q2. Which route did you use to create a local account, and why is a local account the right choice for a lab machine?**
-
-```
-(your answer here)
-```
-
----
-
-## Exercise 6: Reach the server over SSH — REQUIRED
-
-**Your `~/.ssh/config` entry, as you actually wrote it:**
-
-```
-(paste your Host block here)
-```
-
-**`ssh lab` landing on the server:**
-
+## Exercise 2 — Create the CyberLab network (required)
+**Command/output:**
 ```bash
-(paste the terminal here, from the command to the server prompt)
+VBoxManage list natnets
+# [PASTE ACTUAL CYBERLAB NETWORK OUTPUT]
 ```
+**Evidence:** `[VERIFY: screenshots/ex2-cyberlab.png]`
 
-> [!example] Evidence — screenshot
-> *(your Kali terminal showing `ssh lab` and the server prompt — `ex6-ssh-lab.png`)*
+**Q1. Why create the network before the machines?**  
+**Answer:** The shared NAT Network needs to exist so every VM can select the same named network during adapter configuration. If it is created later, the adapter settings for each VM must be revisited and connectivity re-tested.
 
-**Q1. Where does your private key live, and what did the server receive instead?**
+**Q2. NAT Network versus plain NAT?**  
+**Answer:** A NAT Network lets VMs on the same virtual subnet reach one another while using NAT for outbound access. VirtualBox's per-VM plain NAT commonly allows outbound access but does not automatically put separate VMs on one reachable virtual LAN.
 
+## Exercise 3 — Build Kali (required)
+**Kali `ip a`:**
+```bash
+ip a
+# [PASTE ACTUAL IPV4 INTERFACE LINE]
 ```
-(your answer here)
+**Evidence:** `[VERIFY: screenshots/ex3-kali-desktop.png]`
+
+**Q1. Why import Kali while installing the others?**  
+**Answer:** An imported Kali appliance is already configured as a VM image, saving setup time and providing a consistent tool environment. An ISO installation of Ubuntu Server or Windows requires going through the installation workflow and selecting its settings.
+
+**Q2. What did you do about Kali's published password?**  
+**Answer:** [VERIFY WHAT YOU ACTUALLY DID]. The correct action is to change any published default using `passwd` and secure the VM, because anyone who knows the default credentials could log in if they can reach it.
+
+## Exercise 4 — Build Ubuntu Server (required)
+**Ubuntu `ip a`:**
+```bash
+ip a
+# [PASTE ACTUAL IPV4 INTERFACE LINE]
 ```
+**Username:** `[VERIFY: often student in the guide]`  
+**Evidence:** `[VERIFY: screenshots/ex4-ubuntu-console.png]`
 
-**Q2. You typed the Ubuntu password exactly once, during `ssh-copy-id`.
-Why is it not needed after that?**
+**Q1. What does “Install OpenSSH server” do?**  
+**Answer:** It installs and configures the SSH server, allowing Kali to connect remotely to Ubuntu. Without it, the server package/service would need to be installed, enabled, and tested later.
 
+## Exercise 5 — Build Windows 11 (required)
+**Windows `ipconfig`:**
+```text
+[PASTE ACTUAL IPV4 ADDRESS / ADAPTER]
 ```
-(your answer here)
+**Evidence:** `[VERIFY: screenshots/ex5-windows-desktop.png]`
+
+**Q1. Why install without a product key instead of an evaluation edition?**  
+**Answer:** Skipping key entry may let setup proceed with an unactivated installation, subject to licensing requirements and activation restrictions such as personalization limits. An evaluation edition is designed for time-limited testing; the course may favor a standard lab installation. [VERIFY THIS MATCHES YOUR INSTALLATION AND LICENSE.]
+
+**Q2. How did you create a local account, and why use one?**  
+**Answer:** [ENTER YOUR ACTUAL SETUP PATH]. A local account keeps this isolated lab separate from personal cloud identities and limits synchronization of personal data.
+
+## Exercise 6 — Reach Ubuntu via SSH (required)
+**Actual Kali SSH configuration:**
+```sshconfig
+Host lab
+    HostName [ACTUAL_UBUNTU_IP]
+    User student
+    IdentityFile ~/.ssh/[ACTUAL_PRIVATE_KEY_FILENAME]
 ```
-
----
-
-## Exercise 7: Verify the whole lab — REQUIRED
-
-**Check 1 — `ip a` on Kali and Ubuntu, `ipconfig` on Windows:**
-
+**Actual session:**
+```bash
+ssh lab
+# [PASTE ACTUAL PROMPT / OUTPUT]
 ```
-Kali:
-Ubuntu:
-Windows:
+**Evidence:** `[VERIFY: screenshots/ex6-ssh-lab.png]`
+
+**Q1. Where is the private key, and what did the server receive?**  
+**Answer:** The private key stays on the Kali client, normally within `~/.ssh/`. Ubuntu receives the matching **public** key in the user's `~/.ssh/authorized_keys`, never the private key.
+
+**Q2. Why isn't the Ubuntu password needed after `ssh-copy-id`?**  
+**Answer:** `ssh-copy-id` installs the public key on Ubuntu. On later logins, SSH verifies a cryptographic signature made with Kali's private key, so key authentication can succeed without typing the account password (assuming the server is configured to allow it).
+
+## Exercise 7 — Verify the complete lab (required)
+**Check 1 — addresses:**
+```text
+Kali: [PASTE REAL IP]
+Ubuntu: [PASTE REAL IP]
+Windows: [PASTE REAL IP]
 ```
-
-**Check 2 — `ping -c 1 <ubuntu address>` from Kali:**
-
+**Check 2 — Kali to Ubuntu:**
+```bash
+ping -c 1 [ACTUAL_UBUNTU_IP]
+# [PASTE ACTUAL RESULT]
 ```
-(paste output here)
+**Check 3 — Kali SSH:**
+```bash
+ssh lab
+# [PASTE ACTUAL RESULT]
 ```
+**Evidence:** `[VERIFY: screenshots/ex7-three-checks.png]`
 
-**Check 3 — `ssh lab` from Kali:**
+**Q1. Check 1 passes, check 2 fails: what do you know?**  
+**Answer:** The guests have assigned IP settings, but that alone does not prove reachability. A failed ping can indicate mismatched virtual networks, incorrect destinations, a stopped guest, or filtering; it does not, on its own, prove an SSH problem.
 
-```
-(paste output here)
-```
+**Q2. Why not ping Windows for check 2?**  
+**Answer:** Windows Defender Firewall may block inbound ICMP echo requests by default. A failed ping could therefore mislead you even when its VM is connected properly. Ubuntu provides a more dependable target for the documented test.
 
-> [!example] Evidence — screenshot
-> *(all three checks in one terminal — `ex7-three-checks.png`)*
+## Exercise 8 — Take snapshots (required)
+**Evidence:** `[VERIFY: screenshots/ex8-snapshots-kali.png, ex8-snapshots-ubuntu.png, ex8-snapshots-windows.png; each showing clean install]`
 
-**Q1. Suppose check 1 passed and check 2 failed.
-What do you know, and what have you ruled out?**
+**Q1. Why name snapshots after their state?**  
+**Answer:** A state-based name such as `clean install` immediately explains what can be restored; a date alone does not tell you what software, settings, and changes are included.
 
-```
-(your answer here)
-```
-
-**Q2. Why is check 2 not run against the Windows machine?**
-
-```
-(your answer here)
-```
-
----
-
-## Exercise 8: Take the snapshots — REQUIRED
-
-> [!example] Evidence — screenshot
-> *(the Snapshots panel for each of the three machines, showing `clean install` — `ex8-snapshots-kali.png`, `ex8-snapshots-ubuntu.png`, `ex8-snapshots-windows.png`)*
-
-**Q1. Why is a snapshot named for the state it holds rather than for the date?**
-
-```
-(your answer here)
-```
-
-**Q2. You have a file on a machine that you want to keep, and you are about to restore a snapshot taken before that file existed.
-What has to happen first, and why?**
-
-```
-(your answer here)
-```
-
----
+**Q2. A file was created after the snapshot. What must happen before restoring?**  
+**Answer:** Copy the important file to a safe place outside the VM/snapshot first (for example, an approved host folder or backup). Restoring an earlier state can discard later changes inside the VM.
 
 ## Anything that failed
+`[DESCRIBE REAL ERRORS AND FIXES, OR SAY NOTHING FAILED AFTER VERIFYING]`
 
-If something did not work, describe it here: **the exact step, the exact error, and what you tried.**
-This is not a penalty.
-A failure you can describe is a two-minute fix, and describing it accurately is a graded skill in this course.
+## AI assistance disclosure
+ChatGPT was used to draft explanations and improve Markdown formatting. All environment-specific observations, commands, and screenshots must be independently checked and captured by the student.
 
-```
-(your answer here, or "nothing failed")
-```
-
----
-
-## AI Assistance
-
-One line, **required either way**: `None`, or the AI assistant you used and what you used it for, for example *"to explain an error VirtualBox showed"*.
-Using one for learning, explanation or debugging is allowed.
-Not disclosing it is an integrity violation.
-
-```
-(None, or: which assistant, and what for)
-```
+## Before submitting
+- [ ] Replace every `[VERIFY]`, `[PASTE]`, and `[ENTER]` item with real evidence.
+- [ ] Store screenshots beside the worksheet under `screenshots/` and embed them.
+- [ ] Confirm all three guests, networking, SSH, and snapshots actually work.
+- [ ] Check name/date, then commit and push.
